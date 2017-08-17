@@ -31,9 +31,12 @@ public class LoanSubmitRestController {
         final Client client = clientService.find(id);
 
         if(client == null)
-            return "CLIENT NOT EXIST";
+            return "CLIENT NOT EXIST.";
 
-        final LoanStatus status = loanService.requestLoan(client);
+        if(amount == null || amount < 0)
+            return "INVALID AMOUNT.";
+
+        final LoanStatus status = loanService.requestLoan(client, amount);
 
         switch (status) {
             case APPROVED:
@@ -41,10 +44,10 @@ public class LoanSubmitRestController {
                 clientService.update(client);
                 return "LOAN APPROVED!";
             case REJECTED:
-                return "LOAN WAS REJECTED";
+                return "LOAN WAS REJECTED.";
 
             default:
-                return "UNKNOWN STATUS";
+                return "UNKNOWN STATUS.";
         }
     }
 }

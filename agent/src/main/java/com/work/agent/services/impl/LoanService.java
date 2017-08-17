@@ -1,6 +1,7 @@
 package com.work.agent.services.impl;
 
 import com.work.agent.model.Client;
+import com.work.agent.model.LoanRequest;
 import com.work.agent.model.LoanStatus;
 import com.work.agent.model.AttorneyResponse;
 import com.work.agent.services.ILoanService;
@@ -23,11 +24,11 @@ public class LoanService implements ILoanService {
     }
 
     @Override
-    public LoanStatus requestLoan(final Client client) {
+    public LoanStatus requestLoan(final Client client, final Long amount) {
         return this.restTemplate.exchange(
                 RequestEntity.post(URI.create("http://localhost:" + 8888 + "/loan"))
                         .contentType(MediaType.APPLICATION_JSON)
-                        .body(client),
+                        .body(new LoanRequest(client.getAccount().getBalance(), amount)),
                 AttorneyResponse.class)
                 .getBody().getStatus();
     }
