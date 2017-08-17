@@ -4,26 +4,32 @@ import com.work.agent.model.Client;
 import com.work.agent.services.IClientService;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @Service
 public class ClientService implements IClientService {
 
+    private Map<Long, Client> clientBase = new HashMap<>();
+
     @Override
     public Client register(final String name) {
-        return null;
+        final Client client = new Client(name);
+        return clientBase.put(client.getId(), client);
     }
 
     @Override
     public Client find(final Long id) {
-        return null;
+        return clientBase.get(id);
     }
 
     @Override
     public Client update(final Client client) {
-        return null;
+        return clientBase.replace(client.getId(), client);
     }
 
     @Override
     public boolean remove(final Long id) {
-        return false;
+        return (clientBase.remove(id) != null);
     }
 }

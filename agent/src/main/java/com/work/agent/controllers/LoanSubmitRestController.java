@@ -1,6 +1,11 @@
 package com.work.agent.controllers;
 
+import com.work.agent.model.AttorneyResponse;
+import com.work.agent.model.Client;
+import com.work.agent.model.LoanStatus;
+import com.work.agent.services.IClientService;
 import com.work.agent.services.ILoanService;
+import com.work.agent.services.impl.ClientService;
 import com.work.agent.services.impl.LoanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,15 +16,35 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoanSubmitRestController {
 
     private final ILoanService loanService;
+    private final IClientService clientService;
 
     @Autowired
-    public LoanSubmitRestController(final LoanService loanService) {
+    public LoanSubmitRestController(final LoanService loanService,
+                                    final ClientService clientService) {
         this.loanService = loanService;
+        this.clientService = clientService;
     }
 
     @PostMapping("/loan")
-    public String getLoan(@RequestParam("name") String name,
-                          @RequestParam("amount") Long amount) {
-        return null;
+    public String requestLoan(@RequestParam("id") final Long id,
+                              @RequestParam("amount") final Long amount) {
+        final Client client = clientService.find(id);
+
+        if(client == null)
+            return "CLIENT NOT EXIST";
+
+        final LoanStatus status = loanService.requestLoan(client);
+
+        switch (status) {
+            case APPROVED:
+                client.getAccount().addLoans(amount);
+                clientService.update(client);
+                return "LOAN APPROVED!";
+            case REJECTED:
+                return "LOAN WAS REJECTED";
+
+            default:
+                return "UNKNOWN STATUS";
+        }
     }
 }
