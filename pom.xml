@@ -24,5 +24,6 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.verstion>1.8</java.verstion>
     </properties>
 </project>
