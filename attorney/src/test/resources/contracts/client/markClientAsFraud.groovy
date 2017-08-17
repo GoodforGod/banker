@@ -18,7 +18,7 @@ Contract.make {
     }
 
     response {
-        status 200
+        status 403
 
         body([
                 'message' : 'Stop been a fraud.',
