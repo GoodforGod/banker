@@ -8,8 +8,8 @@ Contract.make {
         url '/verify'
 
         body([
-                'client.id' : $(regex('[0-9]{10}')),
-                loanAmount : $(regex('[0-9]{1,4}'))
+                'client.id': $(regex('[0-9]{10}')),
+                loanAmount : $(regex('[0-9]{5,100}'))
         ])
 
         headers {
@@ -18,10 +18,10 @@ Contract.make {
     }
 
     response {
-        status 200
+        status 403
 
         body([
-                'message' : 'Loan granted.',
+                'message' : 'Stop been a fraud.',
         ])
 
         headers {
@@ -29,4 +29,3 @@ Contract.make {
         }
     }
 }
-

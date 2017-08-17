@@ -1,13 +1,14 @@
 package com.work.agent.model;
 
-import java.util.UUID;
+import static java.util.concurrent.ThreadLocalRandom.current;
 
 public class Client {
 
-    private Long id = UUID.randomUUID().getMostSignificantBits();
+    private Long id = current().nextLong();
     private String name;
+    private Account account = new Account();
 
-    public Client(String name) {
+    public Client(final String name) {
         this.name = name;
     }
 
@@ -17,5 +18,9 @@ public class Client {
 
     public String getName() {
         return name;
+    }
+
+    public Account getAccount() {
+        return account;
     }
 }
