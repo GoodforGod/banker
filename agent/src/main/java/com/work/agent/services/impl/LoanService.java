@@ -42,4 +42,14 @@ public class LoanService implements ILoanService {
         clientService.update(client);
         return client.getAccount();
     }
+
+    @Override
+    public AttorneyResponse.LoanStatus requestLoan(final Client client, final Integer amount) {
+        return requestLoan(client, (long) amount);
+    }
+
+    @Override
+    public Account submitLoan(final Client client, final Integer amount) {
+        return submitLoan(client, (long) amount);
+    }
 }
