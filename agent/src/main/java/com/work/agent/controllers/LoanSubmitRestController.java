@@ -1,6 +1,5 @@
 package com.work.agent.controllers;
 
-import com.work.agent.model.AttorneyResponse;
 import com.work.agent.model.Client;
 import com.work.agent.model.LoanStatus;
 import com.work.agent.services.IClientService;

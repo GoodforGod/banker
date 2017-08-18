@@ -15,7 +15,8 @@ public class ClientService implements IClientService {
     @Override
     public Client register(final String name) {
         final Client client = new Client(name);
-        return clientBase.put(client.getId(), client);
+        clientBase.put(client.getId(), client);
+        return client;
     }
 
     @Override
