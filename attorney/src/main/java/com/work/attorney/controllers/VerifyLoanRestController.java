@@ -6,6 +6,7 @@ import com.work.attorney.model.states.LoanVerdict;
 import com.work.attorney.services.IAttorneyService;
 import com.work.attorney.services.impl.AttorneyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +23,11 @@ public class VerifyLoanRestController {
     @Autowired
     public VerifyLoanRestController(final AttorneyService attorneyService) {
         this.attorneyService = attorneyService;
+    }
+
+    @GetMapping("/verify")
+    public void verify() {
+
     }
 
     @PostMapping(value = "/verify")

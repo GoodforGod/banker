@@ -10,6 +10,8 @@ public class AttorneyResponse {
     private String message;
     private LoanStatus status;
 
+    public AttorneyResponse() { }
+
     public AttorneyResponse(final String message,
                             final LoanStatus status) {
         this.message = message;

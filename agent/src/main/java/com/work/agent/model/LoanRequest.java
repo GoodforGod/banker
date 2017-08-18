@@ -5,6 +5,8 @@ public class LoanRequest {
     private Long balance;
     private Long amount;
 
+    public LoanRequest() { }
+
     public LoanRequest(Long balance, Long amount) {
         this.balance = balance;
         this.amount = amount;

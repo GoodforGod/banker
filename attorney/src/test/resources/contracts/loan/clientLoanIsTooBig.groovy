@@ -13,7 +13,7 @@ Contract.make {
         ])
 
         headers {
-            contentType('application/json;charset=UTF-8')
+            contentType('application/json')
         }
     }
 
@@ -26,7 +26,7 @@ Contract.make {
         ])
 
         headers {
-            contentType('application/json;charset=UTF-8')
+            contentType('application/json')
         }
     }
 }

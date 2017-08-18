@@ -28,13 +28,13 @@ public class LoanServiceTest {
     private ClientService clientService;
 
     @Test
-    public void loanRequestSuccess() {
+    public void loanRequestInsufficient() {
         Client client = clientService.register("Tommy");
         assertNotNull(client);
 
         AttorneyResponse response = loanService.requestLoan(client, 100000);
         assertEquals(REJECTED, response.getStatus());
-        assertEquals(response.getMessage(), "Loan is too big.");
+        assertEquals(response.getMessage(), "Balance is insufficient for loan.");
     }
 
     @Test
