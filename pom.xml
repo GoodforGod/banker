@@ -11,6 +11,7 @@
         <module>configure-service</module>
         <module>attorney</module>
         <module>agent</module>
+        <module>supply-objects</module>
     </modules>
 
     <parent>
