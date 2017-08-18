@@ -2,31 +2,47 @@ package com.work.attorney.controllers;
 
 import com.work.attorney.model.AttorneyResponse;
 import com.work.attorney.model.LoanRequest;
+import com.work.attorney.model.states.LoanVerdict;
+import com.work.attorney.services.IAttorneyService;
+import com.work.attorney.services.impl.AttorneyService;
 import com.work.attorney.util.DigitUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.work.attorney.model.LoanStatus.APPROVED;
-import static com.work.attorney.model.LoanStatus.REJECTED;
+import javax.validation.constraints.AssertFalse;
+
+import static com.work.attorney.model.states.LoanStatus.APPROVED;
+import static com.work.attorney.model.states.LoanStatus.REJECTED;
 
 @RestController
 public class VerifyLoanRestController {
 
+    private final IAttorneyService attorneyService;
+
+    @Autowired
+    public VerifyLoanRestController(final AttorneyService attorneyService) {
+        this.attorneyService = attorneyService;
+    }
+
     @PostMapping(value = "/verify")
     public AttorneyResponse verify(@RequestBody final LoanRequest request) {
-        if (request == null || request.getBalance() == null || request.getAmount() == null)
+        if (isRequestFraud(request))
             return new AttorneyResponse("Fraud detected.", REJECTED);
 
-        if (request.getBalance() < 0)
-            return new AttorneyResponse("Balance is negative.", REJECTED);
+        final LoanVerdict verdict = attorneyService.verify(request.getBalance(), request.getAmount());
 
-        if (DigitUtils.numberOfDigits(request.getBalance()) < 6)
-            return new AttorneyResponse("Balance is insufficient for loan.", REJECTED);
+        switch (verdict) {
+            case APPROVED:
+                return new AttorneyResponse(verdict.getComment(), APPROVED);
 
-        if (DigitUtils.numberOfDigits(request.getAmount()) > 4)
-            return new AttorneyResponse("Loan is too big.", REJECTED);
+            default:
+                return new AttorneyResponse(verdict.getComment(), REJECTED);
+        }
+    }
 
-        return new AttorneyResponse("Loan approved.", APPROVED);
+    private boolean isRequestFraud(final LoanRequest request) {
+        return (request == null || request.getBalance() == null || request.getAmount() == null);
     }
 }

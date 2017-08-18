@@ -1,5 +1,7 @@
 package com.work.attorney.model;
 
+import com.work.attorney.model.states.LoanStatus;
+
 public class AttorneyResponse {
 
     private String message;
