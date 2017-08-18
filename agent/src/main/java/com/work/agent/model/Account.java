@@ -1,31 +1,58 @@
 package com.work.agent.model;
 
-public class Account {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Account implements IAccount {
 
     private Long balance = 0L;
-    private Long loans = 0L;
+    private List<Long> loans = new ArrayList<>();
 
-    public Long addBalance(final Long amount) {
+    @Override
+    public Long replenish(final Long amount) {
         return balance += amount;
     }
 
-    public Long addLoans(final Long amount) {
-        return loans += amount;
+    @Override
+    public Long withdraw(final Long amount) {
+        return (balance > amount)
+                ? balance -= amount
+                : null;
     }
 
+    @Override
+    public Long addLoan(final Long amount) {
+        loans.add(amount);
+        return amount;
+    }
+
+    //<editor-fold desc="For Integers">
+
+    @Override
+    public Long withdraw(Integer amount) {
+        return withdraw((long) amount);
+    }
+
+
+    @Override
+    public Long replenish(Integer amount) {
+        return replenish((long) amount);
+    }
+
+
+    @Override
+    public Long addLoan(Integer amount) {
+        return addLoan((long) amount);
+    }
+    //</editor-fold>
+
+    @Override
     public Long getBalance() {
         return balance;
     }
 
-    public void setBalance(final Long balance) {
-        this.balance = balance;
-    }
-
-    public Long getLoans() {
+    @Override
+    public List<Long> getLoans() {
         return loans;
-    }
-
-    public void setLoans(Long loans) {
-        this.loans = loans;
     }
 }

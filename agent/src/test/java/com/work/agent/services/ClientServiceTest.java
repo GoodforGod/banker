@@ -24,15 +24,31 @@ public class ClientServiceTest {
     }
 
     @Test
-    public void updateClient() {
+    public void replenishClientBalance() {
         Client client = clientService.register("Bob");
         assertNotNull(client);
 
-        client.getAccount().setBalance(100L);
+        client.getAccount().replenish(100);
+
+        Client updated = clientService.update(client);
+        assertNotNull(updated);
+        assertEquals(100, (long)updated.getAccount().getBalance());
+    }
+
+    @Test
+    public void withdrawClientBalance() {
+        Client client = clientService.register("Bob");
+        assertNotNull(client);
+
+        client.getAccount().replenish(100);
 
         Client updated = clientService.update(client);
         assertNotNull(updated);
         assertEquals(100L, (long)updated.getAccount().getBalance());
+
+        client.getAccount().withdraw(50);
+
+        assertEquals(50L, (long)client.getAccount().getBalance());
     }
 
     @Test

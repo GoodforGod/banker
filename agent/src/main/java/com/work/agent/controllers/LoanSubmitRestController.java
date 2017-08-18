@@ -26,27 +26,24 @@ public class LoanSubmitRestController {
 
     @PostMapping("/loan")
     public String requestLoan(@RequestParam("id") final Long id,
-                              @RequestParam("amount") final Long amount) {
+                              @RequestParam("amount") final Long loanAmount) {
         final Client client = clientService.find(id);
 
         if(client == null)
             return "CLIENT DOES NOT EXIST.";
 
-        if(amount == null || amount < 0)
+        if(loanAmount == null || loanAmount < 0)
             return "INVALID LOAN AMOUNT.";
 
-        final AttorneyResponse.LoanStatus status = loanService.requestLoan(client, amount);
+        final AttorneyResponse.LoanStatus status = loanService.requestLoan(client, loanAmount);
 
         switch (status) {
             case APPROVED:
-                client.getAccount().addLoans(amount);
-                clientService.update(client);
+                loanService.submitLoan(client, loanAmount);
                 return "LOAN APPROVED!";
-            case REJECTED:
-                return "LOAN WAS REJECTED.";
 
             default:
-                return "UNKNOWN STATUS.";
+                return "LOAN WAS REJECTED.";
         }
     }
 }

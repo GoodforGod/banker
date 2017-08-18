@@ -1,4 +1,4 @@
-package contracts.client
+package contracts.loan
 
 import org.springframework.cloud.contract.spec.Contract
 
@@ -8,8 +8,8 @@ Contract.make {
         url '/verify'
 
         body([
-                'balance' : '',
-                'amount' : ''
+                'balance' : $(regex('[1-9]{6,10}')),
+                'amount' : $(regex('[0-9]{5}[0-9]*'))
         ])
 
         headers {
@@ -21,7 +21,7 @@ Contract.make {
         status 200
 
         body([
-                'message' : 'Fraud detected.',
+                'message' : 'Loan is too big.',
                 'status' : 'REJECTED'
         ])
 
@@ -30,3 +30,4 @@ Contract.make {
         }
     }
 }
+

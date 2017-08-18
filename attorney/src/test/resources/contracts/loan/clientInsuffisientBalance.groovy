@@ -1,4 +1,4 @@
-package contracts.client
+package contracts.loan
 
 import org.springframework.cloud.contract.spec.Contract
 

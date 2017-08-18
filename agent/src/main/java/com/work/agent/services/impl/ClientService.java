@@ -26,7 +26,10 @@ public class ClientService implements IClientService {
 
     @Override
     public Client update(final Client client) {
-        return clientBase.replace(client.getId(), client);
+        final Client prev = clientBase.replace(client.getId(), client);
+        return (prev == null)
+                ? null
+                : client;
     }
 
     @Override
