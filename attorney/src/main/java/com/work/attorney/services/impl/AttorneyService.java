@@ -15,10 +15,12 @@ public class AttorneyService implements IAttorneyService {
         if (balance < 0)
             return BALANCE_NEGATIVE;
 
-        if (DigitUtils.numberOfDigits(balance) < 6)
+        int SUFFICIENT_BALANCE_NUMBER_OF_DIGITS = 5;
+        if (DigitUtils.numberOfDigits(balance) <= SUFFICIENT_BALANCE_NUMBER_OF_DIGITS)
             return BALANCE_INSUFFICIENT;
 
-        if (DigitUtils.numberOfDigits(amount) > 4)
+        int MAX_LOAN_NUMBER_OF_DIGITS = 4;
+        if (DigitUtils.numberOfDigits(amount) > MAX_LOAN_NUMBER_OF_DIGITS)
             return HUGE_LOAN;
 
         return APPROVED;

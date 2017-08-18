@@ -5,16 +5,14 @@ import com.work.attorney.model.LoanRequest;
 import com.work.attorney.model.states.LoanVerdict;
 import com.work.attorney.services.IAttorneyService;
 import com.work.attorney.services.impl.AttorneyService;
-import com.work.attorney.util.DigitUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.constraints.AssertFalse;
+import static com.work.attorney.model.AttorneyResponse.LoanStatus.APPROVED;
+import static com.work.attorney.model.AttorneyResponse.LoanStatus.REJECTED;
 
-import static com.work.attorney.model.states.LoanStatus.APPROVED;
-import static com.work.attorney.model.states.LoanStatus.REJECTED;
 
 @RestController
 public class VerifyLoanRestController {

@@ -1,7 +1,7 @@
 package com.work.agent.controllers;
 
+import com.work.agent.model.AttorneyResponse;
 import com.work.agent.model.Client;
-import com.work.agent.model.LoanStatus;
 import com.work.agent.services.IClientService;
 import com.work.agent.services.ILoanService;
 import com.work.agent.services.impl.ClientService;
@@ -30,12 +30,12 @@ public class LoanSubmitRestController {
         final Client client = clientService.find(id);
 
         if(client == null)
-            return "CLIENT NOT EXIST.";
+            return "CLIENT DOES NOT EXIST.";
 
         if(amount == null || amount < 0)
-            return "INVALID AMOUNT.";
+            return "INVALID LOAN AMOUNT.";
 
-        final LoanStatus status = loanService.requestLoan(client, amount);
+        final AttorneyResponse.LoanStatus status = loanService.requestLoan(client, amount);
 
         switch (status) {
             case APPROVED:

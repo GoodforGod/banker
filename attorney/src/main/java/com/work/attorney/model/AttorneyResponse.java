@@ -1,8 +1,11 @@
 package com.work.attorney.model;
 
-import com.work.attorney.model.states.LoanStatus;
-
 public class AttorneyResponse {
+
+    public enum LoanStatus {
+        APPROVED,
+        REJECTED
+    }
 
     private String message;
     private LoanStatus status;

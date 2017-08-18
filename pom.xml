@@ -8,7 +8,7 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>configurer</module>
+        <module>configure-service</module>
         <module>attorney</module>
         <module>agent</module>
     </modules>
