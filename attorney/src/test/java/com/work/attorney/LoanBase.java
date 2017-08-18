@@ -5,7 +5,7 @@ import com.work.attorney.controllers.VerifyLoanRestController;
 import com.work.attorney.services.impl.AttorneyService;
 import org.junit.Before;
 
-public class AttorneyLoanResponseTest {
+public class LoanBase {
 
     @Before
     public void setup() {

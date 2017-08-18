@@ -35,9 +35,9 @@ public class LoanSubmitRestController {
         if(loanAmount == null || loanAmount < 0)
             return "INVALID LOAN AMOUNT.";
 
-        final AttorneyResponse.LoanStatus status = loanService.requestLoan(client, loanAmount);
+        final AttorneyResponse response = loanService.requestLoan(client, loanAmount);
 
-        switch (status) {
+        switch (response.getStatus()) {
             case APPROVED:
                 loanService.submitLoan(client, loanAmount);
                 return "LOAN APPROVED!";

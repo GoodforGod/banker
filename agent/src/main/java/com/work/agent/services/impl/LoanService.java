@@ -27,13 +27,13 @@ public class LoanService implements ILoanService {
     }
 
     @Override
-    public AttorneyResponse.LoanStatus requestLoan(final Client client, final Long amount) {
+    public AttorneyResponse requestLoan(final Client client, final Long amount) {
         return this.restTemplate.exchange(
                 RequestEntity.post(URI.create("http://localhost:" + 8888 + "/loan"))
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(new LoanRequest(client.getAccount().getBalance(), amount)),
                 AttorneyResponse.class)
-                .getBody().getStatus();
+                .getBody();
     }
 
     @Override
@@ -44,7 +44,7 @@ public class LoanService implements ILoanService {
     }
 
     @Override
-    public AttorneyResponse.LoanStatus requestLoan(final Client client, final Integer amount) {
+    public AttorneyResponse requestLoan(final Client client, final Integer amount) {
         return requestLoan(client, (long) amount);
     }
 
