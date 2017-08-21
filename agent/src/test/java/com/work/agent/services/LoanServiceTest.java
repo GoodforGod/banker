@@ -38,6 +38,46 @@ public class LoanServiceTest {
     }
 
     @Test
+    public void loanFraudRequest() {
+        Client client = clientService.register("Tommy");
+        assertNotNull(client);
+
+        AttorneyResponse response = loanService.requestLoan(client, 0);
+        assertEquals(REJECTED, response.getStatus());
+        assertEquals(response.getMessage(), "Fraud detected.");
+    }
+
+    @Test
+    public void tooBigLoanRequest() {
+        Client client = clientService.register("Tommy");
+        assertNotNull(client);
+
+        AttorneyResponse response = loanService.requestLoan(client, 100000);
+        assertEquals(REJECTED, response.getStatus());
+        assertEquals(response.getMessage(), "Loan is too big.");
+    }
+
+    @Test
+    public void loanRequestWithNegativeBalance() {
+        Client client = clientService.register("Tommy");
+        assertNotNull(client);
+
+        AttorneyResponse response = loanService.requestLoan(client, 100000);
+        assertEquals(REJECTED, response.getStatus());
+        assertEquals(response.getMessage(), "Balance is negative.");
+    }
+
+    @Test
+    public void loanValidRequest() {
+        Client client = clientService.register("Tommy");
+        assertNotNull(client);
+
+        AttorneyResponse response = loanService.requestLoan(client, 100000);
+        assertEquals(REJECTED, response.getStatus());
+        assertEquals(response.getMessage(), "Loan approved.");
+    }
+
+    @Test
     public void loanSubmission() {
         Client client = clientService.register("Tom");
         assertNotNull(client);

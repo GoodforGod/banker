@@ -39,7 +39,7 @@ public class VerifyLoanRestController {
 
         switch (verdict) {
             case APPROVED:
-                return new AttorneyResponse(verdict.getComment(), APPROVED);
+                return new AttorneyResponse(verdict.getComment(), APPROVED, request.getAmount());
 
             default:
                 return new AttorneyResponse(verdict.getComment(), REJECTED);

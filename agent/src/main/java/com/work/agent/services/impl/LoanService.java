@@ -46,19 +46,17 @@ public class LoanService implements ILoanService {
     }
 
     @Override
-    public Account submitLoan(final Client client, final Long amount) {
-        client.getAccount().addLoan(amount);
-        clientService.update(client);
-        return client.getAccount();
+    public Account submitLoan(final Client client, final AttorneyResponse response) {
+        if(response.getStatus().equals(AttorneyResponse.LoanStatus.APPROVED)) {
+            client.getAccount().addLoan(response.getApprovedLoan());
+            clientService.update(client);
+            return client.getAccount();
+        }
+        return null;
     }
 
     @Override
     public AttorneyResponse requestLoan(final Client client, final Integer amount) {
         return requestLoan(client, (long) amount);
-    }
-
-    @Override
-    public Account submitLoan(final Client client, final Integer amount) {
-        return submitLoan(client, (long) amount);
     }
 }
