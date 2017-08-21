@@ -8,8 +8,8 @@ Contract.make {
         url '/verify'
 
         body([
-                'balance' : $(regex('[1-9]{6,10}')),
-                'amount' : $(regex('-[0-9]+'))
+                'balance' : $(regex('[0]?')),
+                'amount' : $(regex('[0-9]{1,5}'))
         ])
 
         headers {
@@ -21,7 +21,7 @@ Contract.make {
         status 200
 
         body([
-                'message' : 'Loan is negative.',
+                'message' : 'Balance is negative.',
                 'status' : 'REJECTED'
         ])
 
@@ -30,4 +30,3 @@ Contract.make {
         }
     }
 }
-

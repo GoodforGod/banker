@@ -38,7 +38,7 @@ public class VerifyLoanRestController {
         final LoanVerdict verdict = attorneyService.verify(request.getBalance(), request.getAmount());
 
         switch (verdict) {
-            case APPROVED:
+            case LOAN_APPROVED:
                 return new AttorneyResponse(verdict.getComment(), APPROVED, request.getAmount());
 
             default:

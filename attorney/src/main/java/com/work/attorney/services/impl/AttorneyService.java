@@ -12,8 +12,11 @@ public class AttorneyService implements IAttorneyService {
 
     @Override
     public LoanVerdict verify(final long balance, final long amount) {
-        if (balance < 0)
+        if (balance <= 0)
             return BALANCE_NEGATIVE;
+
+        if(amount <= 0)
+            return LOAN_NEGATIVE;
 
         int SUFFICIENT_BALANCE_NUMBER_OF_DIGITS = 5;
         if (DigitUtils.numberOfDigits(balance) <= SUFFICIENT_BALANCE_NUMBER_OF_DIGITS)
@@ -21,9 +24,9 @@ public class AttorneyService implements IAttorneyService {
 
         int MAX_LOAN_NUMBER_OF_DIGITS = 4;
         if (DigitUtils.numberOfDigits(amount) > MAX_LOAN_NUMBER_OF_DIGITS)
-            return HUGE_LOAN;
+            return LOAN_HUGE;
 
-        return APPROVED;
+        return LOAN_APPROVED;
     }
 
     @Override

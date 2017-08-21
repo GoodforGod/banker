@@ -4,12 +4,17 @@ public enum LoanVerdict {
     /**
      *  If all check were passed
      */
-    APPROVED("Loan approved."),
+    LOAN_APPROVED("Loan approved."),
 
     /**
      * If loan is more than 5 digits
      */
-    HUGE_LOAN("Loan is too big."),
+    LOAN_HUGE("Loan is too big."),
+
+    /**
+     * If loan is negative value
+     */
+    LOAN_NEGATIVE("Loan is negative value."),
 
     /**
      * If balance is less than 6 digits

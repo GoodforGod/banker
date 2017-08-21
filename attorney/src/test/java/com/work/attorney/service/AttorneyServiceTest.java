@@ -37,13 +37,13 @@ public class AttorneyServiceTest {
     public void isLoanHuge() {
         LoanVerdict verdict = attorneyService.verify(1000000, 100000);
 
-        assertEquals(verdict, LoanVerdict.HUGE_LOAN);
+        assertEquals(verdict, LoanVerdict.LOAN_HUGE);
     }
 
     @Test
     public void isLoanApproved() {
         LoanVerdict verdict = attorneyService.verify(100000, 1000);
 
-        assertEquals(verdict, LoanVerdict.APPROVED);
+        assertEquals(verdict, LoanVerdict.LOAN_APPROVED);
     }
 }
