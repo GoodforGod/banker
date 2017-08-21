@@ -1,11 +1,11 @@
 package com.work.agent.controllers;
 
-import com.work.agent.model.AttorneyResponse;
 import com.work.agent.model.Client;
 import com.work.agent.services.IClientService;
 import com.work.agent.services.ILoanService;
 import com.work.agent.services.impl.ClientService;
 import com.work.agent.services.impl.LoanService;
+import model.dto.loan.AttorneyResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,7 +39,7 @@ public class LoanSubmitRestController {
 
         switch (response.getStatus()) {
             case APPROVED:
-                loanService.submitLoan(client, loanAmount);
+                loanService.submitLoan(client, response);
                 return "LOAN APPROVED!";
 
             default:

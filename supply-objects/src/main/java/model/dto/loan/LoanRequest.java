@@ -1,4 +1,4 @@
-package com.work.agent.model;
+package model.dto.loan;
 
 public class LoanRequest {
 
@@ -20,4 +20,3 @@ public class LoanRequest {
         return amount;
     }
 }
-

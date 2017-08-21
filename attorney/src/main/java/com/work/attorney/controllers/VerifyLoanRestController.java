@@ -1,18 +1,18 @@
 package com.work.attorney.controllers;
 
-import com.work.attorney.model.AttorneyResponse;
-import com.work.attorney.model.LoanRequest;
 import com.work.attorney.model.states.LoanVerdict;
 import com.work.attorney.services.IAttorneyService;
 import com.work.attorney.services.impl.AttorneyService;
+import model.dto.loan.AttorneyResponse;
+import model.dto.loan.LoanRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.work.attorney.model.AttorneyResponse.LoanStatus.APPROVED;
-import static com.work.attorney.model.AttorneyResponse.LoanStatus.REJECTED;
+import static model.dto.loan.AttorneyResponse.LoanStatus.APPROVED;
+import static model.dto.loan.AttorneyResponse.LoanStatus.REJECTED;
 
 
 @RestController

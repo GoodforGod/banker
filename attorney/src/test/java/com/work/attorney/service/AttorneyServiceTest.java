@@ -2,6 +2,7 @@ package com.work.attorney.service;
 
 import com.work.attorney.model.states.LoanVerdict;
 import com.work.attorney.services.impl.AttorneyService;
+import model.dto.loan.AttorneyResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ public class AttorneyServiceTest {
     @Test
     public void isBalanceInsufficient() {
         LoanVerdict verdict = attorneyService.verify(10, 1000);
+        AttorneyResponse res = new AttorneyResponse();
 
         assertEquals(verdict, LoanVerdict.BALANCE_INSUFFICIENT);
     }

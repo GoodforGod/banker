@@ -1,4 +1,4 @@
-package com.work.agent.model;
+package model.dto.loan;
 
 public class AttorneyResponse {
 
@@ -12,6 +12,13 @@ public class AttorneyResponse {
     private Long approvedLoan;
 
     public AttorneyResponse() { }
+
+    public AttorneyResponse(final String message,
+                            final LoanStatus status) {
+        this.message = message;
+        this.status = status;
+        this.approvedLoan = null;
+    }
 
     public AttorneyResponse(final String message,
                             final LoanStatus status,

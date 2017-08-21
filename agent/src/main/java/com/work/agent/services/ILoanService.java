@@ -1,8 +1,8 @@
 package com.work.agent.services;
 
 import com.work.agent.model.Account;
-import com.work.agent.model.AttorneyResponse;
 import com.work.agent.model.Client;
+import model.dto.loan.AttorneyResponse;
 
 public interface ILoanService {
 

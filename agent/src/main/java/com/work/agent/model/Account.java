@@ -21,9 +21,9 @@ public class Account implements IAccount {
     }
 
     @Override
-    public Long addLoan(final Long amount) {
+    public Account addLoan(final Long amount) {
         loans.add(amount);
-        return amount;
+        return this;
     }
 
     //<editor-fold desc="For Integers">
@@ -41,7 +41,7 @@ public class Account implements IAccount {
 
 
     @Override
-    public Long addLoan(Integer amount) {
+    public Account addLoan(Integer amount) {
         return addLoan((long) amount);
     }
     //</editor-fold>

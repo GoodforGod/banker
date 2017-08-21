@@ -1,9 +1,9 @@
 package com.work.agent.services;
 
-import com.work.agent.model.AttorneyResponse;
 import com.work.agent.model.Client;
 import com.work.agent.services.impl.ClientService;
 import com.work.agent.services.impl.LoanService;
+import model.dto.loan.AttorneyResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,8 @@ import org.springframework.cloud.contract.stubrunner.spring.AutoConfigureStubRun
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static com.work.agent.model.AttorneyResponse.LoanStatus.REJECTED;
+import static model.dto.loan.AttorneyResponse.LoanStatus.APPROVED;
+import static model.dto.loan.AttorneyResponse.LoanStatus.REJECTED;
 import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
@@ -26,6 +27,14 @@ public class LoanServiceTest {
 
     @Autowired
     private ClientService clientService;
+
+    private AttorneyResponse createApprovedResponse(final Long amount) {
+            return new AttorneyResponse("",  APPROVED, amount);
+    }
+
+    private AttorneyResponse createRejectedResponse(final Long amount) {
+        return new AttorneyResponse("",  REJECTED, amount);
+    }
 
     @Test
     public void loanRequestInsufficient() {
@@ -78,13 +87,12 @@ public class LoanServiceTest {
     }
 
     @Test
-    public void loanSubmission() {
+    public void loanApprovedSubmission() {
         Client client = clientService.register("Tom");
         assertNotNull(client);
 
         client.getAccount().replenish(10000);
-        clientService.update(client);
-        loanService.submitLoan(client, 100);
+        loanService.submitLoan(client, createApprovedResponse(100L));
 
         Client loaner = clientService.find(client.getId());
         assertNotNull(loaner);

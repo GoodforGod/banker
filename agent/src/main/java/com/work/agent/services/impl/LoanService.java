@@ -1,11 +1,11 @@
 package com.work.agent.services.impl;
 
 import com.work.agent.model.Account;
-import com.work.agent.model.AttorneyResponse;
 import com.work.agent.model.Client;
-import com.work.agent.model.LoanRequest;
 import com.work.agent.services.IClientService;
 import com.work.agent.services.ILoanService;
+import model.dto.loan.AttorneyResponse;
+import model.dto.loan.LoanRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.MediaType;
@@ -49,7 +49,6 @@ public class LoanService implements ILoanService {
     public Account submitLoan(final Client client, final AttorneyResponse response) {
         if(response.getStatus().equals(AttorneyResponse.LoanStatus.APPROVED)) {
             client.getAccount().addLoan(response.getApprovedLoan());
-            clientService.update(client);
             return client.getAccount();
         }
         return null;

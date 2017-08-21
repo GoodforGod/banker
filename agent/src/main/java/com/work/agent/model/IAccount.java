@@ -9,8 +9,8 @@ public interface IAccount {
     Long withdraw(final Long amount);
     Long withdraw(final Integer amount);
 
-    Long addLoan(final Long amount);
-    Long addLoan(final Integer amount);
+    Account addLoan(final Long amount);
+    Account addLoan(final Integer amount);
 
     Long getBalance();
 

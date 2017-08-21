@@ -60,6 +60,11 @@
 			<artifactId>spring-cloud-contract-wiremock</artifactId>
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+            <groupId>com.work</groupId>
+            <artifactId>supply-objects</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 
