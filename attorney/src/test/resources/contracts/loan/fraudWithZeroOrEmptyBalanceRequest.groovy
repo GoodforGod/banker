@@ -21,7 +21,7 @@ Contract.make {
         status 200
 
         body([
-                'message' : 'Balance is negative.',
+                'message' : 'Fraud detected.',
                 'status' : 'REJECTED'
         ])
 

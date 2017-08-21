@@ -8,8 +8,8 @@ Contract.make {
         url '/verify'
 
         body([
-                'balance' : $(regex('[0-9]{6,}')),
-                'amount' : $(regex('[0-9]{1,4}'))
+                'balance' : $(regex('[0-9]{5,}')),
+                'amount' : $(regex('[0-9]{1,5}'))
         ])
 
         headers {

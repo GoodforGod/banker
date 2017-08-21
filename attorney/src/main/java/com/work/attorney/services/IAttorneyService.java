@@ -12,7 +12,7 @@ public interface IAttorneyService {
      * @param amount loan amount of loan to request
      * @return loan verdict
      */
-    LoanVerdict verify(final long balance, final long amount);
+    LoanVerdict verify(final Long balance, final Long amount);
 
     /**
      *
@@ -20,5 +20,5 @@ public interface IAttorneyService {
      * @param amount loan amount of loan to request
      * @return loan verdict
      */
-    LoanVerdict verify(final int balance, final int amount);
+    LoanVerdict verify(final Integer balance, final Integer amount);
 }
