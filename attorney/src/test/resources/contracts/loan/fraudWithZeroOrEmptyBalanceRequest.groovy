@@ -9,7 +9,7 @@ Contract.make {
 
         body([
                 'balance' : $(regex('[0]?')),
-                'amount' : $(regex('[0-9]{1,5}'))
+                'amount' : $(regex('[1-9]?[0-9]{0,4}'))
         ])
 
         headers {

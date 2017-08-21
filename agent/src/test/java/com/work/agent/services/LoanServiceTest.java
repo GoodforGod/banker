@@ -39,11 +39,12 @@ public class LoanServiceTest {
     @Test
     public void loanRequestInsufficient() {
         Client client = clientService.register("Tommy");
+        client.getAccount().replenish(100);
         assertNotNull(client);
 
-        AttorneyResponse response = loanService.requestLoan(client, 100000);
+        AttorneyResponse response = loanService.requestLoan(client, 100);
         assertEquals(REJECTED, response.getStatus());
-        assertEquals(response.getMessage(), "Balance is insufficient for loan.");
+        assertEquals("Balance is insufficient for loan.", response.getMessage());
     }
 
     @Test
@@ -53,45 +54,37 @@ public class LoanServiceTest {
 
         AttorneyResponse response = loanService.requestLoan(client, 0);
         assertEquals(REJECTED, response.getStatus());
-        assertEquals(response.getMessage(), "Fraud detected.");
+        assertEquals("Fraud detected.", response.getMessage());
     }
 
     @Test
     public void tooBigLoanRequest() {
         Client client = clientService.register("Tommy");
+        client.getAccount().replenish(10000);
         assertNotNull(client);
 
         AttorneyResponse response = loanService.requestLoan(client, 100000);
         assertEquals(REJECTED, response.getStatus());
-        assertEquals(response.getMessage(), "Loan is too big.");
+        assertEquals("Loan is too big.", response.getMessage());
     }
 
     @Test
-    public void loanRequestWithNegativeBalance() {
+    public void loanApprovedRequest() {
         Client client = clientService.register("Tommy");
         assertNotNull(client);
+        client.getAccount().replenish(10000);
 
-        AttorneyResponse response = loanService.requestLoan(client, 100000);
-        assertEquals(REJECTED, response.getStatus());
-        assertEquals(response.getMessage(), "Balance is negative.");
-    }
-
-    @Test
-    public void loanValidRequest() {
-        Client client = clientService.register("Tommy");
-        assertNotNull(client);
-
-        AttorneyResponse response = loanService.requestLoan(client, 100000);
-        assertEquals(REJECTED, response.getStatus());
-        assertEquals(response.getMessage(), "Loan approved.");
+        AttorneyResponse response = loanService.requestLoan(client, 1000);
+        assertEquals(APPROVED, response.getStatus());
+        assertEquals("Loan approved.", response.getMessage() );
     }
 
     @Test
     public void loanApprovedSubmission() {
         Client client = clientService.register("Tom");
         assertNotNull(client);
-
         client.getAccount().replenish(10000);
+
         loanService.submitLoan(client, createApprovedResponse(100L));
 
         Client loaner = clientService.find(client.getId());

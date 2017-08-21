@@ -6,7 +6,6 @@ import com.work.attorney.services.impl.AttorneyService;
 import model.dto.loan.AttorneyResponse;
 import model.dto.loan.LoanRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -25,16 +24,8 @@ public class VerifyLoanRestController {
         this.attorneyService = attorneyService;
     }
 
-    @GetMapping("/verify")
-    public void verify() {
-
-    }
-
     @PostMapping(value = "/verify")
     public AttorneyResponse verify(@RequestBody final LoanRequest request) {
-        if (isRequestFraud(request))
-            return new AttorneyResponse("Fraud detected.", REJECTED);
-
         final LoanVerdict verdict = attorneyService.verify(request.getBalance(), request.getAmount());
 
         switch (verdict) {
@@ -44,9 +35,5 @@ public class VerifyLoanRestController {
             default:
                 return new AttorneyResponse(verdict.getComment(), REJECTED);
         }
-    }
-
-    private boolean isRequestFraud(final LoanRequest request) {
-        return (request == null || request.getBalance() == null || request.getAmount() == null);
     }
 }

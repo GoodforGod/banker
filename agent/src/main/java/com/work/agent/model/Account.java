@@ -10,7 +10,9 @@ public class Account implements IAccount {
 
     @Override
     public Long replenish(final Long amount) {
-        return balance += amount;
+        if (amount > 0)
+            return balance += amount;
+        return 0L;
     }
 
     @Override

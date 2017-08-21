@@ -33,7 +33,7 @@ public class LoanService implements ILoanService {
 //        return this.restTemplate.exchange("http://localhost:" + 8888 + "/verify",
 //                HttpMethod.POST,
 //                new HttpEntity<>(new LoanRequest(client.getAccount().getBalance(), amount),
-//                                new HttpHeaders() {{ add(HttpHeaders.CONTENT_TYPE, "application/json;charset=UTF-8.*"); }}),
+//                                new HttpHeaders() {{ add(HttpHeaders.CONTENT_TYPE, "application/json"); }}),
 //                AttorneyResponse.class)
 //                .getBody();
 
