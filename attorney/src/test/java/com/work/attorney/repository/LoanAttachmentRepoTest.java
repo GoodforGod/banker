@@ -23,7 +23,7 @@ public class LoanAttachmentRepoTest {
     private LoanAttachmentRepository repository;
 
     private LoanAttachment generateAttachment() {
-        return new LoanAttachment(ThreadLocalRandom.current().nextLong(0, 10000));
+        return new LoanAttachment(ThreadLocalRandom.current().nextLong(1, 10000));
     }
 
     @Rollback

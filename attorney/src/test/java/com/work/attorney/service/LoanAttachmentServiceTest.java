@@ -23,7 +23,7 @@ public class LoanAttachmentServiceTest {
     private LoanAttachmentService service;
 
     private Long generateAttachmentLoanAmount() {
-        return ThreadLocalRandom.current().nextLong(0, 10000);
+        return ThreadLocalRandom.current().nextLong(1, 10000);
     }
 
     @Rollback
