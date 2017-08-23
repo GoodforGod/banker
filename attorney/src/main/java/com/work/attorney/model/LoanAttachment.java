@@ -13,6 +13,8 @@ public class LoanAttachment {
 
     private Long amount;
 
+    private LoanAttachment() { }
+
     public LoanAttachment(Long amount) {
         this.amount = amount;
     }

@@ -7,6 +7,11 @@ public class LoanRequest {
 
     public LoanRequest() { }
 
+    public LoanRequest(Integer balance, Integer amount) {
+        this.balance = (long)balance;
+        this.amount = (long)amount;
+    }
+
     public LoanRequest(Long balance, Long amount) {
         this.balance = balance;
         this.amount = amount;

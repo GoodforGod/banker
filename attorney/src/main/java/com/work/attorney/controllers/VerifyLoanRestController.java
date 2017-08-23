@@ -26,7 +26,7 @@ public class VerifyLoanRestController {
 
     @PostMapping(value = "/verify")
     public AttorneyResponse verify(@RequestBody final LoanRequest request) {
-        final LoanVerdict verdict = attorneyService.verify(request.getBalance(), request.getAmount());
+        final LoanVerdict verdict = attorneyService.verify(request);
 
         switch (verdict) {
             case LOAN_APPROVED:

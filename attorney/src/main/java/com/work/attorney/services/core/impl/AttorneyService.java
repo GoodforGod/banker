@@ -3,6 +3,7 @@ package com.work.attorney.services.core.impl;
 import com.work.attorney.model.states.LoanVerdict;
 import com.work.attorney.services.core.IAttorneyService;
 import com.work.attorney.util.DigitUtils;
+import model.dto.loan.LoanRequest;
 import org.springframework.stereotype.Service;
 
 import static com.work.attorney.model.states.LoanVerdict.*;
@@ -11,7 +12,10 @@ import static com.work.attorney.model.states.LoanVerdict.*;
 public class AttorneyService implements IAttorneyService {
 
     @Override
-    public LoanVerdict verify(final Long balance, final Long loanAmount) {
+    public LoanVerdict verify(final LoanRequest request) {
+        final Long balance = request.getBalance();
+        final Long loanAmount = request.getAmount();
+
         if(balance == null || balance == 0)
             return FRAUD;
 
@@ -30,10 +34,5 @@ public class AttorneyService implements IAttorneyService {
             return LOAN_HUGE;
 
         return LOAN_APPROVED;
-    }
-
-    @Override
-    public LoanVerdict verify(final Integer balance, final Integer amount) {
-        return verify((long)balance, (long)amount);
     }
 }
