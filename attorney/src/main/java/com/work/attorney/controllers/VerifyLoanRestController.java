@@ -1,8 +1,8 @@
 package com.work.attorney.controllers;
 
 import com.work.attorney.model.states.LoanVerdict;
-import com.work.attorney.services.IAttorneyService;
-import com.work.attorney.services.impl.AttorneyService;
+import com.work.attorney.services.core.IAttorneyService;
+import com.work.attorney.services.core.impl.AttorneyService;
 import model.dto.loan.AttorneyResponse;
 import model.dto.loan.LoanRequest;
 import org.springframework.beans.factory.annotation.Autowired;

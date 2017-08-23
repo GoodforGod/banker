@@ -1,4 +1,4 @@
-package com.work.attorney.services;
+package com.work.attorney.services.core;
 
 import com.work.attorney.model.states.LoanVerdict;
 

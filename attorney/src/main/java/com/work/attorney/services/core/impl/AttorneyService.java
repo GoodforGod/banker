@@ -1,7 +1,7 @@
-package com.work.attorney.services.impl;
+package com.work.attorney.services.core.impl;
 
 import com.work.attorney.model.states.LoanVerdict;
-import com.work.attorney.services.IAttorneyService;
+import com.work.attorney.services.core.IAttorneyService;
 import com.work.attorney.util.DigitUtils;
 import org.springframework.stereotype.Service;
 
