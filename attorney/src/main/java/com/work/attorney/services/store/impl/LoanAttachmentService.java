@@ -12,8 +12,12 @@ import java.util.Optional;
 @Service
 public class LoanAttachmentService implements ILoanAttachmentService {
 
+    private final LoanAttachmentRepository repository;
+
     @Autowired
-    private LoanAttachmentRepository repository;
+    public LoanAttachmentService(LoanAttachmentRepository repository) {
+        this.repository = repository;
+    }
 
     @Override
     public Optional<LoanAttachment> create(final Long amount) {

@@ -1,22 +1,25 @@
 package com.work.attorney.repository;
 
+import com.work.attorney.config.ServiceJpaConfig;
 import com.work.attorney.model.LoanAttachment;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Profile;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 import static org.junit.Assert.*;
 
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-@ActiveProfiles("test")
+@RunWith(SpringJUnit4ClassRunner.class)
+//@SpringBootTest
+//@ActiveProfiles("local")
+@Profile("local")
+@ContextConfiguration(classes = { ServiceJpaConfig.class })
 public class LoanAttachmentRepoTest {
 
     @Autowired

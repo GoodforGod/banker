@@ -8,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.rules.SpringClassRule;
 import org.springframework.test.context.junit4.rules.SpringMethodRule;
 
@@ -18,6 +19,7 @@ import static org.junit.Assert.assertNotNull;
 
 @RunWith(Parameterized.class)
 @SpringBootTest
+@ActiveProfiles("test")
 public class LoanAttachmentRepoParamTest {
 
     @ClassRule
