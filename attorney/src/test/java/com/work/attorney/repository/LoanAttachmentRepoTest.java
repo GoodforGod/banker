@@ -5,8 +5,8 @@ import com.work.attorney.model.LoanAttachment;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Profile;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -16,9 +16,7 @@ import static org.junit.Assert.*;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-//@SpringBootTest
-//@ActiveProfiles("local")
-@Profile("local")
+@ActiveProfiles("test")
 @ContextConfiguration(classes = { ServiceJpaConfig.class })
 public class LoanAttachmentRepoTest {
 
